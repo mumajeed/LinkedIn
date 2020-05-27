@@ -1,9 +1,11 @@
 package com.linkedin.pageobjects;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Login {
     WebDriver ldriver;
@@ -73,7 +75,15 @@ public void setpassword(String pwd){
             }
         }
 
-
+    public void takescreenshot(){
+        File srcfile = ((TakesScreenshot)ldriver).getScreenshotAs(OutputType.FILE);
+        try{
+        FileUtils.copyFile(srcfile, new File("/Users/azarkabeer/Documents/LinkedIn/Screenshots/login.png"));
+        }
+        catch (IOException e){
+        System.out.println(e.getMessage());
+        }
+}
 
 }
 
